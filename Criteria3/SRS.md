@@ -27,13 +27,25 @@
 
 ### Techincal
 
+- Multiplayer should stay local to prevent dealing with time-consuming networking code
+- C# has some language limitations, altho those should not be an issue due to my experience with it.
+- Ui should have a max depth to allow for faster navigation
+
 ### Ethical
 
 - Collect and store as little data as possible
 
 ## Scope
 
+- Implement Basic Gameplay
+- Add Alternate Gamemodes ( At least one )
+- Add UI ( Title Screen, Player & Gamemode select )
+- Add Settings ( Also add UI for settings )
+- Add Graphical Improvement ( Better art, screenshake, shaders, "Juice" )
+
 ## User Characteristic
+
+My software’s users would be those who enjoy playing video games, with fun twists and a variety of game modes. The game is focused on both casual and “hardcore” gamers
 
 ## Technical Enviroment
 
