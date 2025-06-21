@@ -1,0 +1,21 @@
+# Contingencies
+
+- Injrery
+  - Loss of productivity
+  - Delays in production
+- Death of Family Member
+  - emotional distress
+  - Faster Burnout
+- Scope Creep
+  - Wasted / Lost time
+  - Product Quality loss
+- Data Loss
+  - Rewrite is required due to lost progress
+  - Potential inconsitancies
+  - Faster Burnout
+- Burnout
+  - Reduced Efficency
+  - Reduced Quality
+  - Risk of not meating deadlines
+- Poor Inital estimates
+  - Overrun on time
