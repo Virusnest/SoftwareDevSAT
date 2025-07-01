@@ -1,0 +1,88 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "KnuckleBonesGame/1.0.0": {
+        "dependencies": {
+          "FosterFramework": "0.2.2"
+        },
+        "runtime": {
+          "KnuckleBonesGame.dll": {}
+        }
+      },
+      "FosterFramework/0.2.2": {
+        "runtime": {
+          "lib/net9.0/Foster.Framework.dll": {
+            "assemblyVersion": "0.2.2.0",
+            "fileVersion": "0.2.2.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libFosterPlatform.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSDL3.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSDL3.so.0": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSDL3.so.0.2.14": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libFosterPlatform.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libSDL3.0.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libSDL3.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/FosterPlatform.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/SDL3.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "KnuckleBonesGame/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FosterFramework/0.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+kWJC7XSje9vZg3flKOnt3n+pJrq4ZPIXkz4+rpuK6gypAkDvsu2eMMs9Aevp/NS1suLs/D/gf1KODWl7fW6Nw==",
+      "path": "fosterframework/0.2.2",
+      "hashPath": "fosterframework.0.2.2.nupkg.sha512"
+    }
+  }
+}

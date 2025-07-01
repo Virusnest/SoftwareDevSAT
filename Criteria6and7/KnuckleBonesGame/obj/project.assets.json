@@ -1,0 +1,157 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "FosterFramework/0.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Foster.Framework.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Foster.Framework.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libFosterPlatform.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/libSDL3.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/libSDL3.so.0": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x64/native/libSDL3.so.0.2.14": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx/native/libFosterPlatform.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/osx/native/libSDL3.0.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/osx/native/libSDL3.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/win-x64/native/FosterPlatform.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/SDL3.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FosterFramework/0.2.2": {
+      "sha512": "+kWJC7XSje9vZg3flKOnt3n+pJrq4ZPIXkz4+rpuK6gypAkDvsu2eMMs9Aevp/NS1suLs/D/gf1KODWl7fW6Nw==",
+      "type": "package",
+      "path": "fosterframework/0.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "fosterframework.0.2.2.nupkg.sha512",
+        "fosterframework.nuspec",
+        "lib/net9.0/Foster.Framework.dll",
+        "lib/net9.0/Foster.Framework.xml",
+        "runtimes/linux-x64/native/libFosterPlatform.so",
+        "runtimes/linux-x64/native/libSDL3.so",
+        "runtimes/linux-x64/native/libSDL3.so.0",
+        "runtimes/linux-x64/native/libSDL3.so.0.2.14",
+        "runtimes/osx/native/libFosterPlatform.dylib",
+        "runtimes/osx/native/libSDL3.0.dylib",
+        "runtimes/osx/native/libSDL3.dylib",
+        "runtimes/win-x64/native/FosterPlatform.dll",
+        "runtimes/win-x64/native/SDL3.dll"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "FosterFramework >= 0.2.2"
+    ]
+  },
+  "packageFolders": {
+    "/Users/25kmaloney/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+      "projectName": "KnuckleBonesGame",
+      "projectPath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+      "packagesPath": "/Users/25kmaloney/.nuget/packages/",
+      "outputPath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/25kmaloney/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "dependencies": {
+          "FosterFramework": {
+            "target": "Package",
+            "version": "[0.2.2, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

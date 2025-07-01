@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "LrdVdViy/nU=",
+  "success": true,
+  "projectFilePath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+  "expectedPackageFiles": [
+    "/Users/25kmaloney/.nuget/packages/fosterframework/0.2.2/fosterframework.0.2.2.nupkg.sha512"
+  ],
+  "logs": []
+}
