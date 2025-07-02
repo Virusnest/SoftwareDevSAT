@@ -17,6 +17,10 @@ public class GameBoard
     Board = new SixDieFaces[boardWidth, boardHeight];
   }
 
+  public SixDieFaces GetCell(int x, int y) {
+    return Board[x, y];
+  }
+
   public void SetDieFace(int x, int y, SixDieFaces dieFace)
   {
     Board[x, y] = dieFace;

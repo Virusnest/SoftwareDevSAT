@@ -50,6 +50,9 @@ public class Game : App
 
     Window.Clear(Color.CornflowerBlue);
    // SystemRegistry.SceneManager.Render(Time.Delta);
+    SystemRegistry.SceneManager.Render(Time.Delta);
+    Batcher.Render(Window);
+
     SystemRegistry.Batcher?.Clear();
     SystemRegistry.ScreenManager.Draw(Time.Delta);
     Batcher.PushMatrix(Camera.GetViewMatrix().ToMatrix3x2());
