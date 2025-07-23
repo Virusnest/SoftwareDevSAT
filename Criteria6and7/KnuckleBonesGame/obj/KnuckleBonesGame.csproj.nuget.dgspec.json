@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj": {}
+    "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj": {}
   },
   "projects": {
-    "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj": {
+    "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+        "projectUniqueName": "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
         "projectName": "KnuckleBonesGame",
-        "projectPath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
-        "packagesPath": "/Users/25kmaloney/.nuget/packages/",
-        "outputPath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/obj/",
+        "projectPath": "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+        "packagesPath": "/home/virusnest/.nuget/packages/",
+        "outputPath": "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/25kmaloney/.nuget/NuGet/NuGet.Config"
+          "/home/virusnest/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -47,6 +47,10 @@
             "FosterFramework": {
               "target": "Package",
               "version": "[0.2.2, )"
+            },
+            "MiniAudioEx.NET": {
+              "target": "Package",
+              "version": "[2.0.2, )"
             }
           },
           "imports": [
@@ -65,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/virusnest/.dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

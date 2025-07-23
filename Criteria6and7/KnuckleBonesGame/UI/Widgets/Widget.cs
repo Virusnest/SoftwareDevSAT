@@ -19,6 +19,8 @@ public abstract class Widget
   public Widget? Parent; // The parent widget
   public Vector2 Position;
   public Vector2 Size; // The size of the widget
+  public Vector2 Scale= Vector2.One;
+  public float Rotation=0;
   public abstract void Render(MatrixStack matrixStack, float delta); // Abstract method to render the widget
   public abstract void Update(Vector2 mousePos); // Abstract method to update the widget state
   public abstract void HandleInput(); // Abstract method to handle input events
@@ -92,9 +94,17 @@ public abstract class Widget
     {
       matrixStack.Push(); // Push the current matrix onto the stack
       matrixStack.Translate(GetPosition()); // Translate the matrix to the widget's position
+
       SystemRegistry.Batcher?.PushMatrix(
         matrixStack.Peek().ToMatrix3x2(),false); // Set the model matrix uniform
+      SystemRegistry.Batcher?.PushMatrix(
+        Matrix3x2.CreateTranslation(-Size / 2)*
+        Matrix3x2.CreateScale(Scale)*
+        Matrix3x2.CreateRotation(Rotation)*
+        Matrix3x2.CreateTranslation(Size / 2)
+        ); // Set the model matrix uniform for the batcher
       Render(matrixStack, delta); // Call the render method if the widget is visible
+      SystemRegistry.Batcher?.PopMatrix();
       foreach (var child in Children) child.WidgetRender(matrixStack, delta, ref scale);
       SystemRegistry.Batcher?.PopMatrix(); // Pop the model matrix uniform.
       matrixStack.Pop(); // Pop the matrix off the stack
@@ -113,8 +123,8 @@ public abstract class Widget
   protected int IsMouseDown()
   {
     // Check if the mouse is clicked
-    var mouse = SystemRegistry.Input.Mouse.LeftDown;
-    var mouse2 = SystemRegistry.Input.Mouse.RightDown;
+    var mouse = SystemRegistry.Input.Mouse.LeftPressed;
+    var mouse2 = SystemRegistry.Input.Mouse.RightPressed;
     return (mouse?1:0) | (mouse2?1:0);
   }
 

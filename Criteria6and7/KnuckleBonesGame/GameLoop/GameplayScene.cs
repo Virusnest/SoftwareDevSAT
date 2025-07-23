@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+using KnuckleBonesGame.Registry;
 using KnuckleBonesGame.UI.Screens;
 using Timer = KnuckleBonesGame.Util.Timer;
 
@@ -12,8 +14,8 @@ public class GameplayScene : Scene {
   }
   
   public override void Init() {
+    Game.StartGame();
     SystemRegistry.ScreenManager.SetScreen(new GamePlayHudScreen(this));
-    Objects.Add(new DiceGridObject());
   }
   public override void FixedUpdate(double deltaTime) {
   }
@@ -28,6 +30,7 @@ public class GameplayScene : Scene {
   }
 
   public int RollDice() {
+    SystemRegistry.SoundSystem.PlaySFX( SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/vine-boom.mp3")));
     return  Random.Shared.Next(1,6);
   }
   public override void Resize(int width, int height) {

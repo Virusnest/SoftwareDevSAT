@@ -12,9 +12,11 @@ public static class SystemRegistry {
   public static AssetManager AssetManager;
   public static GraphicsDevice? GraphicsDevice;
   public static Batcher? Batcher;
+  public static SoundSystem SoundSystem;
   static SystemRegistry() {
     ScreenManager = new ScreenManager(800, 600);
     SceneManager = new SceneManager();
+    SoundSystem = new SoundSystem();
   }
   
   

@@ -82,14 +82,13 @@ public class KnuckleGame
 
 
   }
-
-  public bool TakeTurn(Func<int> PickColumnCallback, bool print = false)
+  
+  public bool TakeTurn(SixDieFaces roll, int column)
   {
+    bool placedDice= PlaceDieFace(column, roll, IsPlayerATurn);
+    if (!placedDice)
+      return false; // If the die could not be placed, return false
     OnTurnStart?.Invoke(IsPlayerATurn);
-    SixDieFaces dieFace = RollDie();
-    while (!PlaceDieFace(PickColumnCallback(), dieFace, IsPlayerATurn))
-    {
-    }
     OnTurnEnd?.Invoke(IsPlayerATurn);
     IsPlayerATurn = !IsPlayerATurn;
     if (CheckWinCondition())

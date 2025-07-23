@@ -28,7 +28,7 @@ public class AssetManager {
   public T LoadAsset<T>(ResourceLocation location) where T : IAsset, new() {
     if (Assets.TryGetValue(location, out var asset1)) return (T)asset1;
     var asset = new T();
-    asset.LoadFromFile(Path.Combine(AssetDirectory, location.ToString()), location);
+    asset.LoadFromFile(Path.Combine(AssetDirectory, location.getLocation()), location);
     Assets[location] = asset;
     return asset;
   }

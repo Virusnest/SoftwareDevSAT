@@ -4,7 +4,12 @@ using KnuckleBonesGame.Util.Math;
 
 namespace KnuckleBonesGame.UI.Widgets;
 
-public class Label : Widget {
+public class LabelWidget : Widget {
+
+  public LabelWidget(string text, Vector2 position) {
+    Text = text;
+    Position = position;
+  }
   public string Text { get; set; }
   public override void Render(MatrixStack matrixStack, float delta) {
     SystemRegistry.Batcher.Text(SystemRegistry.AssetManager.SpriteFont, Text,Vector2.Zero, Color.White);

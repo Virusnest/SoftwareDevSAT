@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="FosterFramework" Version="0.2.2" />
+    <PackageReference Include="MiniAudioEx.NET" Version="2.0.2" />
   </ItemGroup>
 
     <Target Name="CopyFolder" AfterTargets="Build">

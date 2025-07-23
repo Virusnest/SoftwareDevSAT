@@ -3,7 +3,7 @@
   /// Class <c>ResourceLocation</c>: A Path to a Resource with a Namespace and a ID.
   /// </summary>
   public class ResourceLocation : IEquatable<ResourceLocation> {
-    public const string DEFAULT_NAMESPACE = "tilegame";
+    public const string DEFAULT_NAMESPACE = "knucklebones";
     public string Namespace { get; }
     public string ID { get; }
     public ResourceLocation(string namespaceValue, string path) {
@@ -16,6 +16,7 @@
     }
     public static ResourceLocation FromString(string a) {
       var str = a.Split(':');
+      
       if (str.Length != 2) return new ResourceLocation(DEFAULT_NAMESPACE, a);
       return new ResourceLocation(str[0], str[1]);
     }

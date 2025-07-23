@@ -52,6 +52,45 @@
             "rid": "win-x64"
           }
         }
+      },
+      "MiniAudioEx.NET/2.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/MiniAudioExNET.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/MiniAudioExNET.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libminiaudioex.so": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libminiaudioex.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-x64/native/libminiaudioex.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libminiaudioex.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libminiaudioex.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-x64/native/miniaudioex.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/miniaudioex.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
       }
     }
   },
@@ -79,27 +118,50 @@
         "runtimes/win-x64/native/FosterPlatform.dll",
         "runtimes/win-x64/native/SDL3.dll"
       ]
+    },
+    "MiniAudioEx.NET/2.0.2": {
+      "sha512": "oOHf4+2dr2ucflf9ohH3k/akB5g0M6QE2NUPdaEaaex1rtQTLRolqwwouSh3NgOCs8k5lshksOn5hdDwADlMjQ==",
+      "type": "package",
+      "path": "miniaudioex.net/2.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net10.0/MiniAudioExNET.dll",
+        "lib/netstandard2.0/MiniAudioExNET.dll",
+        "lib/netstandard2.1/MiniAudioExNET.dll",
+        "miniaudioex.net.2.0.2.nupkg.sha512",
+        "miniaudioex.net.nuspec",
+        "runtimes/linux-arm/native/libminiaudioex.so",
+        "runtimes/linux-arm64/native/libminiaudioex.so",
+        "runtimes/linux-x64/native/libminiaudioex.so",
+        "runtimes/osx-arm64/native/libminiaudioex.dylib",
+        "runtimes/osx-x64/native/libminiaudioex.dylib",
+        "runtimes/win-x64/native/miniaudioex.dll",
+        "runtimes/win-x86/native/miniaudioex.dll"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "FosterFramework >= 0.2.2"
+      "FosterFramework >= 0.2.2",
+      "MiniAudioEx.NET >= 2.0.2"
     ]
   },
   "packageFolders": {
-    "/Users/25kmaloney/.nuget/packages/": {}
+    "/home/virusnest/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+      "projectUniqueName": "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
       "projectName": "KnuckleBonesGame",
-      "projectPath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
-      "packagesPath": "/Users/25kmaloney/.nuget/packages/",
-      "outputPath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/obj/",
+      "projectPath": "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+      "packagesPath": "/home/virusnest/.nuget/packages/",
+      "outputPath": "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/25kmaloney/.nuget/NuGet/NuGet.Config"
+        "/home/virusnest/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -132,6 +194,10 @@
           "FosterFramework": {
             "target": "Package",
             "version": "[0.2.2, )"
+          },
+          "MiniAudioEx.NET": {
+            "target": "Package",
+            "version": "[2.0.2, )"
           }
         },
         "imports": [
@@ -150,7 +216,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/virusnest/.dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
