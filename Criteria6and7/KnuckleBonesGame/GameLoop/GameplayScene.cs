@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using Foster.Framework;
 using KnuckleBonesGame.Registry;
 using KnuckleBonesGame.UI.Screens;
-using Timer = KnuckleBonesGame.Util.Timer;
 
 namespace KnuckleBonesGame.GameLoop;
 
@@ -31,7 +31,8 @@ public class GameplayScene : Scene {
 
   public int RollDice() {
     SystemRegistry.SoundSystem.PlaySFX( SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/vine-boom.mp3")));
-    return  Random.Shared.Next(1,6);
+    return  SystemRegistry.Rng.Int(1,7);
+    
   }
   public override void Resize(int width, int height) {
   }

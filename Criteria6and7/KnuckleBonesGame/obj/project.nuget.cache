@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "gHnIPuVJlSk=",
+  "dgSpecHash": "CLz8rskv+jI=",
   "success": true,
-  "projectFilePath": "/home/virusnest/RiderProjects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
+  "projectFilePath": "/Users/25kmaloney/Projects/SoftwareDevSAT/Criteria6and7/KnuckleBonesGame/KnuckleBonesGame.csproj",
   "expectedPackageFiles": [
-    "/home/virusnest/.nuget/packages/fosterframework/0.2.2/fosterframework.0.2.2.nupkg.sha512",
-    "/home/virusnest/.nuget/packages/miniaudioex.net/2.0.2/miniaudioex.net.2.0.2.nupkg.sha512"
+    "/Users/25kmaloney/.nuget/packages/fosterframework/0.2.2/fosterframework.0.2.2.nupkg.sha512",
+    "/Users/25kmaloney/.nuget/packages/miniaudioex.net/2.0.2/miniaudioex.net.2.0.2.nupkg.sha512"
   ],
   "logs": []
 }

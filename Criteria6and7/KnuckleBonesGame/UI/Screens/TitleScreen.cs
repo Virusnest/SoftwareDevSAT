@@ -1,6 +1,7 @@
 using System.Numerics;
 using Foster.Framework;
 using KnuckleBonesGame.GameLoop;
+using KnuckleBonesGame.Registry;
 using KnuckleBonesGame.UI.Widgets;
 using KnuckleBonesGame.Util;
 using KnuckleBonesGame.Util.Math;
@@ -9,6 +10,8 @@ using TileGame.UI.Widgets;
 namespace KnuckleBonesGame.UI.Screens;
 
 public class TitleScreen : Screen {
+  private readonly SpriteWidget _titleImage = new SpriteWidget(SystemRegistry.AssetManager.LoadAsset<SpriteAsset>(new ResourceLocation("Sprites/Title.png")).Texture,
+    new Vector2(0, 100));
   private readonly ButtonWidget _exitButton = new("Exit", new Vector2(0, 0), new Vector2(200, 25)); // Exit button
 
   private readonly PanelWidget
@@ -18,12 +21,16 @@ public class TitleScreen : Screen {
     _optionsButton = new("Options", new Vector2(0, 0), new Vector2(200, 25)); // Options button
 
   private readonly ButtonWidget _playButton = new("New Game", new Vector2(0, 0), new Vector2(200, 25));
+  
 
   public override void HandleInput() {
     // throw new NotImplementedException();
   }
 
   public override void Initialize() {
+    AddChild(_titleImage);
+    _titleImage.Anchor = Anchor.TopCenter;
+    _titleImage.Scale = Vector2.One * 4f;
     _listWidget.Anchor = Anchor.Center;
     _listWidget.AddChild(_playButton); // Add the play button to the screen
     _listWidget.AddChild(_optionsButton); // Add the options button to the screen

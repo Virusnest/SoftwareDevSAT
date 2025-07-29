@@ -22,10 +22,4 @@
                 DestinationFiles="@(FilesToCopy->'$(OutDir)Assets\%(RecursiveDir)%(Filename)%(Extension)')" />
     </Target>
 
-
-    <ItemGroup>
-    <Folder Include="Assets\Sounds\" />
-    <Folder Include="Assets\Sprites\" />
-  </ItemGroup>
-
 </Project>

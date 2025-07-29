@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KnuckleBonesGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0d194585f978b6ff9cb828c9e9d16efd0cc5287")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32d22e7b4592ec1904c597e5e23838eca5949601")]
 [assembly: System.Reflection.AssemblyProductAttribute("KnuckleBonesGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KnuckleBonesGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

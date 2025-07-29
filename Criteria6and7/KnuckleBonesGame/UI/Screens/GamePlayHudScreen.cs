@@ -16,6 +16,9 @@ public class GamePlayHudScreen:Screen {
   public bool HasClickedDiceB = false;
   
   public LabelWidget TextPopupLabel = new LabelWidget("Test", new Vector2(0, 0));
+  
+  public LabelWidget PlayerScoreLabelA = new LabelWidget("Player A Score: 0", new Vector2(10, 10));
+  public LabelWidget PlayerScoreLabelB = new LabelWidget("Player B Score: 0", new Vector2(10, 10));
 
   public ButtonWidget DiceRollButtonA = new ButtonWidget("1", new Vector2(10, 10), new Vector2(50, 50));
   public ButtonWidget DiceRollButtonB = new ButtonWidget("1", new Vector2(10, 10), new Vector2(50, 50));
@@ -31,6 +34,7 @@ public class GamePlayHudScreen:Screen {
     Round = round;
     GridA = new DiceGridWidget(Round.Game.BoardA, Round.Game.BoardA.BoardWidth, Round.Game.BoardA.BoardHeight);
     GridB = new DiceGridWidget(Round.Game.BoardB, Round.Game.BoardB.BoardWidth, Round.Game.BoardB.BoardHeight,flipped:true);
+
     Round.Game.OnTurnStart += (turn) => {
       if (turn) {
         PlayPopupAnimation("Player A's Turn");
@@ -40,6 +44,9 @@ public class GamePlayHudScreen:Screen {
       }
 
     };
+    Round.Game.OnGameEnded += (state, score) => {
+      SystemRegistry.ScreenManager.SetScreen(new WinScreen(state==GameState.PlayerAWon, score));
+    };
   }
   public override void Render(MatrixStack matrixStack, float delta) {
     DiceTimerA.Update(delta);
@@ -47,6 +54,15 @@ public class GamePlayHudScreen:Screen {
   }
 
   public override void Update(Vector2 mousePos) {
+    if (Round.Game.IsPlayerATurn) {
+      PlayerScoreLabelA.Color=Colors.TextPrimary;
+      PlayerScoreLabelB.Color=Colors.TextSecondary;
+    }
+    else {
+      
+      PlayerScoreLabelA.Color=Colors.TextSecondary;
+      PlayerScoreLabelB.Color=Colors.TextPrimary;
+    }
   }
 
   public override void HandleInput() {
@@ -70,23 +86,28 @@ public class GamePlayHudScreen:Screen {
     TextPopupLabel.Text = text;
     TextPopupLabel.Size = SystemRegistry.AssetManager.SpriteFont.SizeOf(text);
     TWEENER.Clear();
-    TWEENER.TweenVal(SystemRegistry.ScreenManager.Height/4, 0, 3f, StandardEasings.EaseOutExpo, (val) => {
+    TWEENER.TweenVal(SystemRegistry.ScreenManager.Height/4, 0, 1f, StandardEasings.EaseOutExpo, (val) => {
       TextPopupLabel.Position.Y = val; // Example animation effect
     },onComplete: () => {;
+      Console.WriteLine(("Wow"));
+      
       // Reset the label position after the animation
-      TWEENER.TweenVal(0, SystemRegistry.ScreenManager.Height/2, 1f, StandardEasings.EaseInExpo, (val) => {
+      TWEENER.TweenVal(0, SystemRegistry.ScreenManager.Height/2, 0.5f, StandardEasings.EaseInExpo, (val) => {
         TextPopupLabel.Position.Y = val; // Reset position
-      },delay:5f);
+      },delay:0.25f);
     });
     
   }
   public override void Initialize() {
-    
     AddChild(DiceRollButtonA);
     AddChild(DiceRollButtonB);
     AddChild(GridA);
     AddChild(GridB);
     AddChild(TextPopupLabel);
+    AddChild(PlayerScoreLabelA);
+    AddChild(PlayerScoreLabelB);
+    PlayerScoreLabelA.Anchor = Anchor.BottomLeft;
+    PlayerScoreLabelB.Anchor = Anchor.TopRight;
     GridA.Anchor = Anchor.BottomCenter;
     GridB.Anchor = Anchor.TopCenter;
     DiceRollButtonA.Anchor = Anchor.BottomRight;

@@ -47,26 +47,15 @@ public class Game : App
 
   protected override void Render()
   {
-
-    Window.Clear(Color.CornflowerBlue);
-   // SystemRegistry.SceneManager.Render(Time.Delta);
+   
+    Window.Clear(Color.FromHexStringRGB("2E2B27"));
     SystemRegistry.SceneManager.Render(Time.Delta);
     Batcher.Render(Window);
-
+    
     SystemRegistry.Batcher?.Clear();
     SystemRegistry.ScreenManager.Draw(Time.Delta);
-    Batcher.PushMatrix(Camera.GetViewMatrix().ToMatrix3x2());
-    int w = 3, h = 3;
-    for (int x = 0; x < w; x++)
-    {
-      for (int y = 0; y < (h * 2); y++)
-      {
-        // Draw a grid of squares
-        Batcher.Rect(new Rect(x * 100, y * 100, 80, 80), Color.White);
-      }
-    }
-    Batcher.PopMatrix();
     Batcher.Render(Window,Matrix.ViewProjectionMatrix);
+    Batcher.Render(Window);
     Batcher.Clear();
   }
 

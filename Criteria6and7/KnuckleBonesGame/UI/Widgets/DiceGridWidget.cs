@@ -23,16 +23,16 @@ public class DiceGridWidget : Widget {
   public event Action<int,int>? OnCellClicked;
   public override void Render(MatrixStack matrixStack, float delta) {
     for (int i = 0; i < Width; i++) {
-      SystemRegistry.Batcher.Line(new Vector2(i*CellSize,0),new Vector2(i*CellSize,CellSize*Height),5,Color.Blue);
+      SystemRegistry.Batcher.Line(new Vector2(i*CellSize,0),new Vector2(i*CellSize,CellSize*Height),5,BackgroundColour);
       
     }
-    SystemRegistry.Batcher.Line(new Vector2(Width*CellSize,0),new Vector2(Width*CellSize,CellSize*Height),5,Color.Blue);
+    SystemRegistry.Batcher.Line(new Vector2(Width*CellSize,0),new Vector2(Width*CellSize,CellSize*Height),5,BackgroundColour);
 
 
     for (int i = 0; i < Height; i++) {
-      SystemRegistry.Batcher.Line(new Vector2(0,i*CellSize),new Vector2(CellSize*Width,i*CellSize),5,Color.Blue);
+      SystemRegistry.Batcher.Line(new Vector2(0,i*CellSize),new Vector2(CellSize*Width,i*CellSize),5,BackgroundColour);
     }
-    SystemRegistry.Batcher.Line(new Vector2(0,Height*CellSize),new Vector2(CellSize*Width,Height*CellSize),5,Color.Blue);
+    SystemRegistry.Batcher.Line(new Vector2(0,Height*CellSize),new Vector2(CellSize*Width,Height*CellSize),5,BackgroundColour);
 
     
     for (int i = 0; i < Width; i++) {
@@ -46,7 +46,7 @@ public class DiceGridWidget : Widget {
         Vector2 offset = new Vector2(i*CellSize, y*CellSize);
         Vector2 CellOffset = new Vector2(CellSize / 2, CellSize / 2);
         if(number == 0) continue; // Skip empty cells
-        SystemRegistry.Batcher.Text(SystemRegistry.AssetManager.SpriteFont, number.ToString(),offset+CellOffset-size/2,Color.Red);
+        SystemRegistry.Batcher.Text(SystemRegistry.AssetManager.SpriteFont, number.ToString(),offset+CellOffset-size/2,Color);
       }
     }
   }

@@ -4,19 +4,20 @@ using KnuckleBonesGame.Util.Math;
 
 namespace KnuckleBonesGame.UI.Widgets;
 
-public class LabelWidget : Widget {
-
-  public LabelWidget(string text, Vector2 position) {
-    Text = text;
+public class SpriteWidget : Widget {
+  public Texture Image;
+  
+  public SpriteWidget(Texture image, Vector2 position) {
+    Image = image;
     Position = position;
+    Size = new Vector2(image.Width, image.Height);
   }
-  public string Text { get; set; }
   public override void Render(MatrixStack matrixStack, float delta) {
-    SystemRegistry.Batcher.Text(SystemRegistry.AssetManager.SpriteFont, Text,Vector2.Zero, Color);
+    
+    SystemRegistry.Batcher.Image(Image,Color);
   }
 
   public override void Update(Vector2 mousePos) {
-    Size= SystemRegistry.AssetManager.SpriteFont.SizeOf(Text);
   }
 
   public override void HandleInput() {

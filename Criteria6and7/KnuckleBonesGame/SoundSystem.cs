@@ -4,20 +4,30 @@ using MiniAudioExNET;
 namespace KnuckleBonesGame;
 
 public class SoundSystem {
-  public AudioSource SFXSource;
-  public AudioSource MusicSource;
+  public AudioSource[] SFXSource;
   public const uint SAMPLE_RATE = 44100;
   public const uint CHANNELS = 2;
   
   public SoundSystem() {
     AudioContext.Initialize(SAMPLE_RATE, CHANNELS);
     AudioContext.MasterVolume = 0.1f;
-    SFXSource = new AudioSource();
-    MusicSource = new AudioSource();
+    SFXSource = new AudioSource[100];
+    for (int i = 0; i < SFXSource.Length; i++) {
+      var audioSource = new AudioSource();
+      audioSource.Volume = 0.9f;
+      audioSource.Loop = false;
+      SFXSource[i] = audioSource;
+    }
+    
   }
   public void PlaySFX(Sound sound) {
-    SFXSource.Play(sound.Clip);
+    foreach (var audioSource in SFXSource) {
+
+      if (!audioSource.IsPlaying) {
+        audioSource.Play(sound.Clip);
+        return;
+      }
+    }
    
   }
-  public void PlayMusic(Sound sound) {}
 }

@@ -6,6 +6,7 @@ namespace KnuckleBonesGame;
 public static class SystemRegistry {
   
   public static Input? Input;
+  public static Rng Rng;
   public static Controls? Controls;
   public static readonly SceneManager SceneManager;
   public static readonly ScreenManager ScreenManager;
@@ -17,6 +18,7 @@ public static class SystemRegistry {
     ScreenManager = new ScreenManager(800, 600);
     SceneManager = new SceneManager();
     SoundSystem = new SoundSystem();
+    Rng = new Rng(DateTime.Now.Millisecond);
   }
   
   

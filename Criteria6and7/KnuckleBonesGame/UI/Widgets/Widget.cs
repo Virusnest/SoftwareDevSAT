@@ -9,10 +9,10 @@ namespace KnuckleBonesGame.UI.Widgets;
 public abstract class Widget
 {
   public Anchor Anchor = Anchor.TopLeft; // The anchor point of the widget
-  public Color BackgroundColour = Color.White; // The background color of the widget
+  public Color BackgroundColour = Color.FromHexStringRGB("62735B"); // The background color of the widget
   public List<Widget> Children = []; // List of child widgets
 
-  public Color Color = Color.Black; // The color of the widget
+  public Color Color = Color.FromHexStringRGB("DCD4C5"); // The color of the widget
   public bool IsEnabled = true; // Flag to determine if the widget is enabled
   public bool IsVisible = true; // Flag to determine if the widget is visible
   public float Opacity; // The opacity of the widget (0.0 to 1.0)
