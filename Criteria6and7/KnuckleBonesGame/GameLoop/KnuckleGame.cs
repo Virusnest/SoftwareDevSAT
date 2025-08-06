@@ -9,8 +9,9 @@ public class KnuckleGame
   public int BoardWidth { get; private set; }
   public int BoardHeight { get; private set; }
   public GameState State { get; private set; }
-  public bool IsPlayerATurn { get; private set; }
+  public bool IsPlayerATurn { get; private set; } = true;
   Random random = new Random();
+  
 
   public KnuckleGame(int boardWidth, int boardHeight)
   {
@@ -26,6 +27,7 @@ public class KnuckleGame
     State = GameState.InProgress;
     ClearBoards();
     OnGameStarted?.Invoke();
+    OnTurnStart?.Invoke(false);
     IsPlayerATurn = true;
   }
 
@@ -79,8 +81,6 @@ public class KnuckleGame
       SetGameState(GameState.Draw);
       OnGameEnded?.Invoke(GameState.Draw, boardAScore);
     }
-
-
   }
   
   public bool TakeTurn(SixDieFaces roll, int column)
@@ -89,8 +89,8 @@ public class KnuckleGame
     if (!placedDice)
       return false; // If the die could not be placed, return false
     OnTurnStart?.Invoke(IsPlayerATurn);
-    OnTurnEnd?.Invoke(IsPlayerATurn);
     IsPlayerATurn = !IsPlayerATurn;
+    OnTurnEnd?.Invoke(IsPlayerATurn);
     if (CheckWinCondition())
     {
       FindWinner();

@@ -20,6 +20,36 @@ public class GameBoard
   public SixDieFaces GetCell(int x, int y) {
     return Board[x, y];
   }
+  
+  public List<int> GetInvalidColumns(int dice) {
+    List<int> invalidColumns = new List<int>(BoardWidth);
+    for (int x = 0; x < BoardWidth; x++) {
+      if (isColumnFull(x)) {
+        invalidColumns.Add(x);
+      }
+    }
+    return invalidColumns;
+  }
+  public List<int> GetValidColumns(int dice) {
+    List<int> validColumns = new List<int>(BoardWidth);
+    for (int x = 0; x < BoardWidth; x++) {
+      if (!isColumnFull(x)) {
+        validColumns.Add(x);
+      }
+    }
+    return validColumns;
+  }
+  private bool isColumnFull(int x)
+  {
+    for (int y = 0; y < BoardHeight; y++)
+    {
+      if (Board[x, y] == SixDieFaces.None)
+      {
+        return false;
+      }
+    }
+    return true;
+  }
 
   public void SetDieFace(int x, int y, SixDieFaces dieFace)
   {

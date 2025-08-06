@@ -7,15 +7,16 @@ using KnuckleBonesGame.UI.Screens;
 namespace KnuckleBonesGame.GameLoop;
 
 public class GameplayScene : Scene {
-  public KnuckleGame Game = new KnuckleGame(3,3);
+  public KnuckleGame Game;
   public List<GameObject> Objects = new List<GameObject>();
   public override void Update(double deltaTime)
   {
   }
   
   public override void Init() {
+    var settings = new GameSettings {Width = 3,Height = 3};
+    Game = new KnuckleGame(settings.Width,settings.Height);
     Game.StartGame();
-    SystemRegistry.ScreenManager.SetScreen(new GamePlayHudScreen(this));
   }
   public override void FixedUpdate(double deltaTime) {
   }
@@ -29,11 +30,7 @@ public class GameplayScene : Scene {
   public override void Dispose() {
   }
 
-  public int RollDice() {
-    SystemRegistry.SoundSystem.PlaySFX( SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/vine-boom.mp3")));
-    return  SystemRegistry.Rng.Int(1,7);
-    
-  }
+
   public override void Resize(int width, int height) {
   }
 }

@@ -50,7 +50,15 @@ public class ScreenManager
     MatrixStack.Clear();
     CurrentScreen?.WidgetUpdate(MatrixStack, ref _virtualScale);
   }
-
+  public void UpdateUIScale(int scale)
+  {
+    UIScale = scale;
+    _virtualScale = CalcualteUIScale(scale, (int)Width, (int)Height);
+    virtualHeight = (int)Height / _virtualScale;
+    virtualWidth = (int)Width / _virtualScale;
+    if (CurrentScreen != null) CurrentScreen.Size = new Vector2(virtualWidth, virtualHeight);
+    ViewMatrix = Matrix4x4.CreateScale(_virtualScale + 0.001f);
+  }
   private int CalcualteUIScale(int scale,int Width,int Height, int minWidth = 400, int minHeight = 300)
   {
     int i;

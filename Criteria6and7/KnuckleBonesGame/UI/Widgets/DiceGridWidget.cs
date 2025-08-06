@@ -22,18 +22,15 @@ public class DiceGridWidget : Widget {
   
   public event Action<int,int>? OnCellClicked;
   public override void Render(MatrixStack matrixStack, float delta) {
-    for (int i = 0; i < Width; i++) {
+    for (int i = 1; i < Width; i++) {
       SystemRegistry.Batcher.Line(new Vector2(i*CellSize,0),new Vector2(i*CellSize,CellSize*Height),5,BackgroundColour);
       
     }
-    SystemRegistry.Batcher.Line(new Vector2(Width*CellSize,0),new Vector2(Width*CellSize,CellSize*Height),5,BackgroundColour);
 
-
-    for (int i = 0; i < Height; i++) {
+    for (int i = 1; i < Height; i++) {
       SystemRegistry.Batcher.Line(new Vector2(0,i*CellSize),new Vector2(CellSize*Width,i*CellSize),5,BackgroundColour);
     }
-    SystemRegistry.Batcher.Line(new Vector2(0,Height*CellSize),new Vector2(CellSize*Width,Height*CellSize),5,BackgroundColour);
-
+    SystemRegistry.Batcher.RectRoundedLine(new Rect(0,0, Width * CellSize, Height * CellSize), 5,5, BackgroundColour);
     
     for (int i = 0; i < Width; i++) {
       for (int j = 0; j < Height; j++) {

@@ -20,4 +20,9 @@ public class Controls(Input input)
       .Add(Keys.C)
       .Add(Buttons.West)
   );
+  public readonly VirtualAction Pause = new(input, "Pause",
+    new ActionBindingSet()
+      .Add(Keys.Escape)
+      .Add(Buttons.Start)
+  );
 }

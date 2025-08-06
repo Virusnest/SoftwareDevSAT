@@ -123,9 +123,23 @@ public abstract class Widget
   protected int IsMouseDown()
   {
     // Check if the mouse is clicked
+    var mouse = SystemRegistry.Input.Mouse.LeftDown;
+    var mouse2 = SystemRegistry.Input.Mouse.RightDown;
+    return (mouse?1:0) | (mouse2?2:0);
+  }
+  protected int IsMousePressed()
+  {
+    // Check if the mouse is pressed
     var mouse = SystemRegistry.Input.Mouse.LeftPressed;
     var mouse2 = SystemRegistry.Input.Mouse.RightPressed;
-    return (mouse?1:0) | (mouse2?1:0);
+    return (mouse?1:0) | (mouse2?2:0);
+  }
+  protected int IsMouseReleased()
+  {
+    // Check if the mouse is released
+    var mouse = SystemRegistry.Input.Mouse.LeftReleased;
+    var mouse2 = SystemRegistry.Input.Mouse.RightReleased;
+    return (mouse?1:0) | (mouse2?2:0);
   }
 
   public void AddChild(Widget child)

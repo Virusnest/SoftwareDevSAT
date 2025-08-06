@@ -42,7 +42,6 @@ public class TitleScreen : Screen {
     TWEENER.TweenStaggered(_listWidget.Children, x => x.Position.X - 1000, x => x.Position.X, 0.6f, 0.1f,
       MaterialEasings.ExpressiveSlowSpatial, (x, f) => {
         x.Position.X = f;
-    Console.WriteLine(f);
   }, 1);
 
   TWEENER.TweenStaggered(_listWidget.Children, x => 0, x => x.BackgroundColour.A, 0.3f, 0.1f, MaterialEasings.ExpressiveSlowEffects,
@@ -51,11 +50,11 @@ public class TitleScreen : Screen {
     // Initialize the screen and add widgets
     _playButton.OnClick += () => {
       // Handle play button click
-      SystemRegistry.ScreenManager.SetScreen(null);
-      SystemRegistry.SceneManager.SetScene(new GameplayScene());
+      SystemRegistry.ScreenManager.SetScreen(new GameSettingsScreen(this));
     };
     _optionsButton.OnClick += () => {
       // Handle options button click
+      SystemRegistry.ScreenManager.SetScreen(new GlobalSettingsScreen(this));
     };
     _exitButton.OnClick += () => {
       // Handle exit button click
