@@ -5,13 +5,16 @@ namespace KnuckleBonesGame;
 
 public class SoundSystem {
   public AudioSource[] SFXSource;
+  public AudioSource MusicSource;
   public const uint SAMPLE_RATE = 44100;
   public const uint CHANNELS = 2;
   
   public SoundSystem() {
     AudioContext.Initialize(SAMPLE_RATE, CHANNELS);
-    AudioContext.MasterVolume = 0.1f;
+    AudioContext.MasterVolume = 0.7f;
     SFXSource = new AudioSource[100];
+    MusicSource = new AudioSource();
+    MusicSource.Loop = true;
     for (int i = 0; i < SFXSource.Length; i++) {
       var audioSource = new AudioSource();
       audioSource.Volume = 0.9f;
@@ -19,6 +22,13 @@ public class SoundSystem {
       SFXSource[i] = audioSource;
     }
     
+  }
+
+  public void PlayMusic(Sound sound) {
+    if (!MusicSource.IsPlaying) {
+      MusicSource.Play(sound.Clip);
+      
+    }
   }
   public void PlaySFX(Sound sound) {
     foreach (var audioSource in SFXSource) {

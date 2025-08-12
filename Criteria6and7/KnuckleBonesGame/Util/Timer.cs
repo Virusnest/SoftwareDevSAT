@@ -7,8 +7,8 @@ public class Timer {
   private bool _compleated=true;
   
 
-  public Action? Tick;
-  public Action? Complete;
+  public event Action? Tick;
+  public event Action? Complete;
   
 
   public void Update(float deltaTime) {

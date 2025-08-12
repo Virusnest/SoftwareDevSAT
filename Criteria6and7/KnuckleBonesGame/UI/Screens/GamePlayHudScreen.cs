@@ -37,14 +37,20 @@ public class GamePlayHudScreen:Screen {
     Settings = settings;
     GridA = new DiceGridWidget(Round.BoardA, Settings.Width, Settings.Height);
     GridB = new DiceGridWidget(Round.BoardB, Round.BoardB.BoardWidth, Round.BoardB.BoardHeight,flipped:true);
+    GridA.Position = new Vector2(0, 5);
+    GridB.Position = new Vector2(0, 5);
 
+    LoadWidgets();
     Round.OnTurnStart += (turn) => {
       PlayPopupAnimation(!turn ? "Player A's Turn" : "Player B's Turn");
       
     };
     Round.OnTurnEnd += (turn) => {
       if ((!turn)&&Settings.IsAgainstAI) {
-        TakeAiTurn();
+        TWEENER.TweenVal(10,20,0.3f,StandardEasings.EaseInOutBack, (val) => {
+          DiceRollButtonB.Position.Y= val;
+        },loopCount:1);
+        RollDice(false);
       }
     };
     Round.OnGameEnded += (state, score) => {
@@ -70,21 +76,36 @@ public class GamePlayHudScreen:Screen {
   }
 
   public override void HandleInput() {
-    if (SystemRegistry.Controls.Pause.Down) {
-      SystemRegistry.ScreenManager.SetScreen(new TitleScreen());
+    if (SystemRegistry.Controls.Pause.Pressed) {
+      PauseGame(true);
+    }
+  }
+
+  private PauseScreen pauseScreen = new PauseScreen(null);
+  public void PauseGame(bool isPaused) {
+    // Logic to pause the game
+    pauseScreen.Anchor = Anchor.Center;
+    if (isPaused) {
+      AddChild(pauseScreen);
+      SystemRegistry.ScreenManager.Pause(pauseScreen,isPaused);
+    }
+    else {
+      RemoveChild(pauseScreen);
+      SystemRegistry.ScreenManager.Pause(pauseScreen,isPaused);
+
     }
   }
 
   public void TakeAiTurn() {
     if (Round.IsPlayerATurn || !Settings.IsAgainstAI) return;
     if (Settings.AI == null) return;
-    int rolledDice = RollDice();
-    var move = Settings.AI.GetNextMove(Round,rolledDice);
+    
+    var move = Settings.AI.GetNextMove(Round,RolledDiceB);
     if (move == -1) {
       PlayPopupAnimation("AI skipped turn");
       return;
     }
-    Round.TakeTurn((SixDieFaces)rolledDice, move);
+    Round.TakeTurn((SixDieFaces)RolledDiceB, move);
     
   }
   
@@ -101,7 +122,7 @@ public class GamePlayHudScreen:Screen {
     }
   }
   public int RollDice() {
-    SystemRegistry.SoundSystem.PlaySFX( SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/vine-boom.mp3")));
+    SystemRegistry.SoundSystem.PlaySFX( SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/dice.wav")));
     return  SystemRegistry.Rng.Int(1,7);
     
   }
@@ -110,15 +131,17 @@ public class GamePlayHudScreen:Screen {
     // Logic to play the popup animation
     TextPopupLabel.Text = text;
     TextPopupLabel.Size = SystemRegistry.AssetManager.SpriteFont.SizeOf(text);
-    TWEENER.TweenVal(SystemRegistry.ScreenManager.Height/4, 0, 1f, StandardEasings.EaseOutExpo, (val) => {
+    TWEENER.TweenVal(TextPopupLabel.Position.Y, 0, 1f, StandardEasings.EaseOutExpo, (val) => {
       TextPopupLabel.Position.Y = val; // Example animation effect
     },onComplete: () => {;
       
       // Reset the label position after the animation
-      TWEENER.TweenVal(0, SystemRegistry.ScreenManager.Height/2, 0.5f, StandardEasings.EaseInExpo, (val) => {
-        TextPopupLabel.Position.Y = val; // Reset position
-      },delay:0.25f);
-    });
+      
+    },id:1,allowDuplicates:true);
+    TWEENER.TweenVal(TextPopupLabel.Position.Y, SystemRegistry.ScreenManager.Height/2, 0.5f, StandardEasings.EaseInExpo, (val) => {
+      TextPopupLabel.Position.Y = val; // Reset position
+    },delay:1.25f,id:2,allowDuplicates:true);
+
     
   }
   public void UpdateScoreLabels() {
@@ -126,9 +149,7 @@ public class GamePlayHudScreen:Screen {
     PlayerScoreLabelA.Text = $"Player A Score: {Round.BoardA.CalculateScore()}";
     PlayerScoreLabelB.Text = $"Player B Score: {Round.BoardB.CalculateScore()}";
   }
-  public override void Initialize() {
-    
-    Round.StartGame();
+  private void LoadWidgets() {
     AddChild(DiceRollButtonA);
     AddChild(DiceRollButtonB);
     AddChild(GridA);
@@ -143,6 +164,8 @@ public class GamePlayHudScreen:Screen {
     DiceRollButtonA.Anchor = Anchor.BottomRight;
     DiceRollButtonB.Anchor = Anchor.TopLeft;
     TextPopupLabel.Anchor = Anchor.Center;
+    DiceRollButtonA.Silent= true; // Disable sound for the dice roll button
+    DiceRollButtonB.Silent = true; // Disable sound for the dice roll button
     DiceRollButtonA.OnClick += () => {
       if (!Round.IsPlayerATurn||HasClickedDiceA) return;
       RollDice(true);
@@ -151,10 +174,17 @@ public class GamePlayHudScreen:Screen {
       },loopCount:1);
       HasClickedDiceA = true;
     };
-    DiceTimerA.Complete= () => DiceRollButtonA.Text = RolledDiceA.ToString();
-    DiceTimerA.Tick = () => {
+    DiceTimerA.Complete += () => DiceRollButtonA.Text = RolledDiceA.ToString();
+    DiceTimerA.Tick += () => {
       DiceRollButtonA.Text=Random.Shared.Next(6).ToString();
     };
+    DiceTimerB.Complete += () => {
+      if (Settings.IsAgainstAI) {
+        TakeAiTurn();
+      }
+      DiceRollButtonB.Text = RolledDiceB.ToString();
+    };
+    DiceTimerB.Tick += () => { DiceRollButtonB.Text = Random.Shared.Next(6).ToString(); };
     GridA.OnCellClicked += (x, _) => {
       // Handle cell click for Grid A
       if (!Round.IsPlayerATurn||!HasClickedDiceA) return;
@@ -172,8 +202,7 @@ public class GamePlayHudScreen:Screen {
           loopCount: 1);
         HasClickedDiceB = true;
       };
-      DiceTimerB.Complete = () => DiceRollButtonB.Text = RolledDiceB.ToString();
-      DiceTimerB.Tick = () => { DiceRollButtonB.Text = Random.Shared.Next(6).ToString(); };
+
       GridB.OnCellClicked += (x, _) => {
         // Handle cell click for Grid B
         if (Round.IsPlayerATurn || !HasClickedDiceB) return;
@@ -183,6 +212,10 @@ public class GamePlayHudScreen:Screen {
         HasClickedDiceB = false;
       };
     }
-
+    // Load the widgets for the game play HUD screen
+  }
+  public override void Initialize() {
+    if (!Round.HasStarted)
+      Round.StartGame();
   }
 }

@@ -4,6 +4,7 @@ namespace KnuckleBonesGame.GameLoop;
 
 public class KnuckleGame
 {
+  public bool HasStarted => State == GameState.InProgress;
   public GameBoard BoardA { get; private set; }
   public GameBoard BoardB { get; private set; }
   public int BoardWidth { get; private set; }

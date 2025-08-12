@@ -7,6 +7,7 @@ namespace KnuckleBonesGame.UI;
 
 public abstract class Screen : Widget
 {
+  public bool hasInitialized = false;
   protected static Tweener TWEENER = new(); // Tweener instance for animations
 
   public Screen? LastScreen; // The last screen before this one

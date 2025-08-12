@@ -1,31 +1,40 @@
+# Code Snippets
 
-using System.Numerics;
-using Foster.Framework;
-using KnuckleBonesGame.Util.Math;
-using KnuckleBonesGame.Util.Math.Extentions;
 
-namespace KnuckleBonesGame.UI.Widgets;
+## Screen Manager
 
-public abstract class Widget
-{
-  public Anchor Anchor = Anchor.TopLeft; // The anchor point of the widget
-  public Color BackgroundColour = Color.FromHexStringRGB("62735B"); // The background color of the widget
-  public List<Widget> Children = []; // List of child widgets
+`UI/ScreenManager.cs`
+```csharp  
+ public void SetScreen(Screen? screen) {
+    CurrentScreen = screen;
+    if (!screen?.hasInitialized??false){
+      CurrentScreen?.Initialize();
+      screen.hasInitialized = true;
+    }
+    if (CurrentScreen != null) CurrentScreen.Size = new Vector2(virtualWidth, virtualHeight);
+  }
+ 
+  public void Resize(float width, float height) {
+    _virtualScale= CalcualteUIScale(UIScale, (int)width, (int)height);
+    Width = width;
+    Height = height;
+    virtualHeight = (int)Height / _virtualScale;
+    virtualWidth = (int)Width / _virtualScale;
+    if (CurrentScreen != null) CurrentScreen.Size = new Vector2(virtualWidth, virtualHeight);
+    ViewMatrix = Matrix4x4.CreateScale(_virtualScale + 0.001f);
+  }
 
-  public bool InputBlocked;
-  public Color Color = Color.FromHexStringRGB("DCD4C5"); // The color of the widget
-  public bool IsEnabled = true; // Flag to determine if the widget is enabled
-  public bool IsVisible = true; // Flag to determine if the widget is visible
-  public float Opacity; // The opacity of the widget (0.0 to 1.0)
-  public Widget? Parent; // The parent widget
-  public Vector2 Position;
-  public Vector2 Size; // The size of the widget
-  public Vector2 Scale= Vector2.One;
-  public float Rotation=0;
-  public abstract void Render(MatrixStack matrixStack, float delta); // Abstract method to render the widget
-  public abstract void Update(Vector2 mousePos); // Abstract method to update the widget state
-  public abstract void HandleInput(); // Abstract method to handle input events
+  private int CalcualteUIScale(int scale, int Width, int Height, int minWidth = 400, int minHeight = 300) {
+    int i;
+    for (i = 1; i != scale && Width / (i + 1) > minWidth && Width / (i + 1) > minHeight; i++) ;
+    return i;
+  }
+```
 
+## Widgets
+
+`UI/Widgets/Widget.cs`
+```csharp
   private Vector2 GetOffset()
   {
     // Calculate the position based on the anchor point and size
@@ -65,18 +74,6 @@ public abstract class Widget
     };
   }
   
-  
-
-  private Vector2 GetPosition()
-  {
-    return Position * GetOffsetFlip() + GetOffset(); // Get the position of the widget relative to its parent
-  }
-
-  private Vector2 GetMousePos()
-  {
-     return Game.MousePosition;
-  }
-
   public virtual void WidgetUpdate(MatrixStack matrixStack, ref int scale)
   {
     if (!IsEnabled) return; // If the widget is not enabled, skip the update
@@ -118,52 +115,37 @@ public abstract class Widget
       matrixStack.Pop(); // Pop the matrix off the stack
     }
   }
+```
 
-  protected bool isMouseHover(Vector2 mousePos)
-  {
-    // Check if the mouse is hovering over the widget
-    if (mousePos.X >= 0 && mousePos.X <= Size.X &&
-        mousePos.Y >= 0 && mousePos.Y <= Size.Y)
-      return true;
-    return false;
-  }
+## Button Widget
 
-  protected int IsMouseDown()
-  {
-    if (InputBlocked) return 0; // If input is blocked, return 0
-    // Check if the mouse is clicked
-    var mouse = SystemRegistry.Input.Mouse.LeftDown;
-    var mouse2 = SystemRegistry.Input.Mouse.RightDown;
-    return (mouse?1:0) | (mouse2?2:0);
-  }
-  protected int IsMousePressed()
-  {
-    if (InputBlocked) return 0; // If input is blocked, return 0
-    // Check if the mouse is pressed
-    var mouse = SystemRegistry.Input.Mouse.LeftPressed;
-    var mouse2 = SystemRegistry.Input.Mouse.RightPressed;
-    return (mouse?1:0) | (mouse2?2:0);
-  }
-  protected int IsMouseReleased()
-  {
-    if (InputBlocked) return 0; // If input is blocked, return 0
-    // Check if the mouse is released
-    var mouse = SystemRegistry.Input.Mouse.LeftReleased;
-    var mouse2 = SystemRegistry.Input.Mouse.RightReleased;
-    return (mouse?1:0) | (mouse2?2:0);
-  }
+`UI/Widgets/ButtonWidget.cs`
+```csharp
+  public override void Update(Vector2 mousePos) {
+    // Check if the mouse is over the button and if it is clicked
+    Hovering = false;
 
-  public void AddChild(Widget child)
-  {
-    // Add a child widget to the current widget
-    child.Parent = this; // Set the parent of the child widget
-    Children.Add(child); // Add the child widget to the list of children
-  }
+    if (isMouseHover(mousePos)) Hovering = true;
+    if (IsMouseDown() == 1) {
+      if (Hovering && !startedClickingOut)
+        hasPressed = true;
+      else
+        startedClickingOut = true;
+    }
 
-  public void RemoveChild(Widget child)
-  {
-    // Remove a child widget from the current widget
-    child.Parent = null; // Clear the parent of the child widget
-    Children.Remove(child); // Remove the child widget from the list of children
+    if (IsMouseDown() != 1) {
+      if (hasPressed && Hovering) OnClick?.Invoke();
+      if (!Silent && hasPressed && Hovering) SystemRegistry.SoundSystem.PlaySFX(SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/click.wav"))); // Play click sound if not silent
+      startedClickingOut = false;
+      hasPressed = false;
+    }
   }
-}
+```
+
+## Notable Files
+
+ - `KnuckleAI.cs`
+ - `UI/Screens/*.cs`
+ - `Gameloop/KnuckleGame.cs`
+
+

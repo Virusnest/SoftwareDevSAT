@@ -18,7 +18,12 @@ public class GameSettingsScreen :Screen  {
       }
     };
     PlayButton.OnClick += () => {
+      IKnuckleAI? ai = null;
+      if (AIDifficultySldier.Value > 0) {
+        ai = new KnuckleAI();
+      }
       var settings = new GameSettings() {
+        AI = ai,
         Width = (int)BoardWidthSlider.Value,
         Height = (int)BoardHeightSlider.Value,
         AILevel = (int)AIDifficultySldier.Value,
@@ -41,8 +46,8 @@ public class GameSettingsScreen :Screen  {
 
   }
   private Screen? LastScreen;
-  ButtonWidget BackButton = new ButtonWidget("Back", new Vector2(0, 0), new Vector2(100, 50));
-  ButtonWidget PlayButton = new ButtonWidget("Play", new Vector2(0, 0), new Vector2(100, 50));
+  ButtonWidget BackButton = new ButtonWidget("Back", new Vector2(0, 5), new Vector2(100, 50));
+  ButtonWidget PlayButton = new ButtonWidget("Play", new Vector2(0, 5), new Vector2(100, 50));
   PanelWidget SettingsPanel = new PanelWidget(new Vector2(0, 0), new Vector2(100, 200));
   SliderWidget AIDifficultySldier = new SliderWidget(new Vector2(0, 0), new Vector2(100, 50), 0, 5, text:"AI Difficulty");
   SliderWidget BoardWidthSlider = new SliderWidget( new Vector2(0, 0), new Vector2(100, 50), 3, 10, text:"Board Width");

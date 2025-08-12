@@ -1,5 +1,6 @@
 using System.Numerics;
 using Foster.Framework;
+using KnuckleBonesGame.Registry;
 using KnuckleBonesGame.Util.Math;
 
 namespace KnuckleBonesGame.UI.Widgets;
@@ -8,6 +9,7 @@ public class ButtonWidget : Widget {
   private bool hasPressed; // Track if the button was clicked
   private bool Hovering; // Track if the mouse has entered the button area
   private bool startedClickingOut;
+  public bool Silent = false; // If true, the button will not play a sound when clicked
 
   public string Text; // The text displayed on the button
   
@@ -50,6 +52,7 @@ public class ButtonWidget : Widget {
 
     if (IsMouseDown() != 1) {
       if (hasPressed && Hovering) OnClick?.Invoke();
+      if (!Silent && hasPressed && Hovering) SystemRegistry.SoundSystem.PlaySFX(SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/click.wav"))); // Play click sound if not silent
       startedClickingOut = false;
       hasPressed = false;
     }

@@ -21,13 +21,8 @@ public class TitleScreen : Screen {
     _optionsButton = new("Options", new Vector2(0, 0), new Vector2(200, 25)); // Options button
 
   private readonly ButtonWidget _playButton = new("New Game", new Vector2(0, 0), new Vector2(200, 25));
-  
 
-  public override void HandleInput() {
-    // throw new NotImplementedException();
-  }
-
-  public override void Initialize() {
+  public TitleScreen() {
     AddChild(_titleImage);
     _titleImage.Anchor = Anchor.TopCenter;
     _titleImage.Scale = Vector2.One * 4f;
@@ -39,15 +34,6 @@ public class TitleScreen : Screen {
     _playButton.Anchor = Anchor.TopCenter;
     _optionsButton.Anchor = Anchor.Center; // Set the anchor for the options button
     _exitButton.Anchor = Anchor.BottomCenter; // Set the anchor for the exit button5
-    TWEENER.TweenStaggered(_listWidget.Children, x => x.Position.X - 1000, x => x.Position.X, 0.6f, 0.1f,
-      MaterialEasings.ExpressiveSlowSpatial, (x, f) => {
-        x.Position.X = f;
-  }, 1);
-
-  TWEENER.TweenStaggered(_listWidget.Children, x => 0, x => x.BackgroundColour.A, 0.3f, 0.1f, MaterialEasings.ExpressiveSlowEffects,
-      (x, f) => x.BackgroundColour.A = (byte)f, 1);
-    Console.WriteLine("Title screen initialized!"); 
-    // Initialize the screen and add widgets
     _playButton.OnClick += () => {
       // Handle play button click
       SystemRegistry.ScreenManager.SetScreen(new GameSettingsScreen(this));
@@ -61,6 +47,23 @@ public class TitleScreen : Screen {
       Console.WriteLine("Exit button clicked!");
       Environment.Exit(0); // Exit the application
     };
+  }
+
+  public override void HandleInput() {
+    // throw new NotImplementedException();
+  }
+
+  public override void Initialize() {
+    SystemRegistry.SoundSystem.PlayMusic(SystemRegistry.AssetManager.LoadAsset<Sound>(new ResourceLocation("Sounds/music.wav")));
+    TWEENER.TweenStaggered(_listWidget.Children, x => x.Position.X - 1000, x => x.Position.X, 0.6f, 0.1f,
+      MaterialEasings.ExpressiveSlowSpatial, (x, f) => {
+        x.Position.X = f;
+  }, 1);
+
+  TWEENER.TweenStaggered(_listWidget.Children, x => 0, x => x.BackgroundColour.A, 0.3f, 0.1f, MaterialEasings.ExpressiveSlowEffects,
+      (x, f) => x.BackgroundColour.A = (byte)f, 1);
+    // Initialize the screen and add widgets
+
   }
 
   public override void Render(MatrixStack matrixStack, float delta) {

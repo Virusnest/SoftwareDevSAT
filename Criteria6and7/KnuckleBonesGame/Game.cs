@@ -42,14 +42,12 @@ public class Game : App
   {
     // Update the camera and screen manager on window resize
     SystemRegistry.ScreenManager.Resize(Window.Width, Window.Height);
-    SystemRegistry.SceneManager.Resize(Window.Width, Window.Height);
   }
 
   protected override void Render()
   {
    
     Window.Clear(Color.FromHexStringRGB("2E2B27"));
-    SystemRegistry.SceneManager.Render(Time.Delta);
     Batcher.Render(Window);
     
     SystemRegistry.Batcher?.Clear();
@@ -78,7 +76,6 @@ public class Game : App
   protected override void Update()
   {
     SystemRegistry.ScreenManager.Update();
-    SystemRegistry.SceneManager.Update(Time.Delta);
     MousePosition= Input.Mouse.Position;
     // Update the camera based on controls 
     Camera.Update();

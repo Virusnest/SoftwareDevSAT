@@ -32,6 +32,7 @@ public class KnuckleAI : IKnuckleAI {
         return GetShortestColumn(isPlayerA ? game.BoardA : game.BoardB);
     }
     
+    //UNUSED 
     private int GetPersonalStrategyMove(KnuckleGame game, int dice, bool isPlayerA = false) {
         var myBoard = isPlayerA ? game.BoardA : game.BoardB;
         var opponentBoard = isPlayerA ? game.BoardB : game.BoardA;
@@ -87,12 +88,7 @@ public class KnuckleAI : IKnuckleAI {
                 ValueScore += diceWeights[(int)die - 1];
             }
         }
-        
-
         return score;
-
-
-
     }
 
     private int GetShortestColumn(GameBoard board) {

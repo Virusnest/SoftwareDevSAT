@@ -8,9 +8,12 @@ public class Tweener {
     Action? onComplete = null,
     bool flip = true,
     int loopCount = 0,
-    float delay = 0
+    float delay = 0,
+    int id=0,
+    bool allowDuplicates = true
   ) {
     var tween = new Tween {
+      Id = id,
       StartValue = startValue,
       EndValue = endValue,
       Flip = flip,
@@ -21,7 +24,14 @@ public class Tweener {
       OnComplete = onComplete,
       Delay = delay
     };
+    if (!allowDuplicates) {
+      // Remove existing tween with the same ID
+      _tweens.RemoveAll(t => t.Id == id);
+    }
     _tweens.Add(tween);
+  }
+  public void RemoveTween(int id) {
+    _tweens.RemoveAll(t => t.Id == id);
   }
 
   public void TweenStaggered<T>(
@@ -81,6 +91,7 @@ public class Tweener {
   }
 
   private class Tween {
+    public int Id;
     public float Delay;
     public float Duration;
     public EasingFunction? EasingFunction;

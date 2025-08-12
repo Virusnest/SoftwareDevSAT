@@ -10,25 +10,6 @@ public class GlobalSettingsScreen :Screen{
   public GlobalSettingsScreen(Screen previousScreen) : base() {
     // Initialize the screen with the previous screen
     PreviousScreen = previousScreen;
-  }
-  
-  Screen PreviousScreen;
-  ButtonWidget VsyncButton = new ButtonWidget("Vsync", new Vector2(0, 60), new Vector2(100, 50));
-  ButtonWidget FullscreenButton = new ButtonWidget("Fullscreen", new Vector2(0, 0), new Vector2(100, 50));
-  ButtonWidget BackButton = new ButtonWidget("Back", new Vector2(0, 10), new Vector2(100, 50));
-  ButtonWidget UIScaleButton = new ButtonWidget("UI Scale", new Vector2(0, -60), new Vector2(100, 50));
-  PanelWidget SettingsPanel = new PanelWidget(new Vector2(0, 0), new Vector2(100, 200));
-  public override void Render(MatrixStack matrixStack, float delta) {
-    
-  }
-
-  public override void Update(Vector2 mousePos) {
-  }
-
-  public override void HandleInput() {
-  }
-
-  public override void Initialize() {
     AddChild(SettingsPanel);
     SettingsPanel.Anchor = Anchor.Center;
     SettingsPanel.AddChild(VsyncButton);
@@ -50,7 +31,28 @@ public class GlobalSettingsScreen :Screen{
     };
     BackButton.OnClick += () => {
       SystemRegistry.ScreenManager.SetScreen(PreviousScreen);
+      
     };
+  }
+  
+  Screen PreviousScreen;
+  ButtonWidget VsyncButton = new ButtonWidget("Vsync", new Vector2(0, 60), new Vector2(100, 50));
+  ButtonWidget FullscreenButton = new ButtonWidget("Fullscreen", new Vector2(0, 0), new Vector2(100, 50));
+  ButtonWidget BackButton = new ButtonWidget("Back", new Vector2(0, 10), new Vector2(100, 50));
+  ButtonWidget UIScaleButton = new ButtonWidget("UI Scale", new Vector2(0, -60), new Vector2(100, 50));
+  PanelWidget SettingsPanel = new PanelWidget(new Vector2(0, 0), new Vector2(100, 200));
+  public override void Render(MatrixStack matrixStack, float delta) {
+    
+  }
+
+  public override void Update(Vector2 mousePos) {
+  }
+
+  public override void HandleInput() {
+  }
+
+  public override void Initialize() {
+
     
   }
 }
