@@ -31,6 +31,8 @@
   }
 ```
 
+`?` is the null conditional operator, which checks if the left-hand side is not null before accessing the right-hand side. This is useful for avoiding null reference exceptions.
+
 ## Widgets
 
 `UI/Widgets/Widget.cs`
@@ -141,6 +143,25 @@
     }
   }
 ```
+
+## AI
+
+```cs
+  public int GetNextMove(KnuckleGame game, int dice, int aiLevel, bool isPlayerA = false) {
+    switch (aiLevel) {
+      case 1:
+        // Level 1 AI: Randomly selects a valid column
+        return GetRandomNextMove(game, dice, isPlayerA);
+      case 2:
+        // Level 2 AI: Selects the shortest column
+        return GetSimpleNextMove(game, dice, isPlayerA);
+      default:
+        return 1;
+    }
+  }
+```
+
+Example of range checking (all values without case return to default)
 
 ## Notable Files
 
