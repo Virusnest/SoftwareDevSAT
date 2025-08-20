@@ -35,7 +35,6 @@ public class Game : App
     Controls = new Controls(Input);
     Camera = new Camera(GraphicsDevice, Controls);
     Window.OnResize += Window_OnResize;
-
   }
   
   private void Window_OnResize()
@@ -46,6 +45,8 @@ public class Game : App
 
   protected override void Render()
   {
+    
+    
    
     Window.Clear(Color.FromHexStringRGB("2E2B27"));
     Batcher.Render(Window);
