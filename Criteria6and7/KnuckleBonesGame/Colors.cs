@@ -1,8 +1,11 @@
 using Foster.Framework;
 
 namespace KnuckleBonesGame;
-
+/// <summary>
+/// Static Color Palette for KnuckleBonesGame
+/// </summary>
 public static class Colors {
+
   public static Color Background=Color.FromHexStringRGB("#2E2B27");//	Dark earthy brown-gray, low contrast base
   public static Color MainBlockColor=Color.FromHexStringRGB("#5C5346");//	Muted brown, natural and unobtrusive
   public static Color Accent=Color.FromHexStringRGB("#8B7E66");//	Light olive-tan, for hover/focus

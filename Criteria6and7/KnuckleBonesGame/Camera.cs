@@ -1,8 +1,11 @@
 using System.Numerics;
 using Foster.Framework;
-
+/// <summary>
+/// Basic Camera class for 2D games.
+/// </summary>
 public class Camera(GraphicsDevice graphicsDevice, Controls controls)
 {
+
   public GraphicsDevice GraphicsDevice { get; } = graphicsDevice;
   public Controls Controls { get; } = controls;
 

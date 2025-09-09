@@ -1,0 +1,4 @@
+- Most Users tend to struggle navigating ui and understanding what is interactive and what is not.
+- Users tend to pick up the mechanics of gameplay quickly and can complete a round of gameplay with little to no issues.
+- Some of the users were able to quickly understand the ui and navigate it with ease.
+- 

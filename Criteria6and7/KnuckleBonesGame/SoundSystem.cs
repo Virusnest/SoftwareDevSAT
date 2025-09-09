@@ -2,8 +2,12 @@ using Foster.Framework;
 using MiniAudioExNET;
 
 namespace KnuckleBonesGame;
-
+/// <summary>
+/// Simple Sound System for KnuckleBonesGame
+/// Plays Music and SFX
+/// </summary>
 public class SoundSystem {
+
   public AudioSource[] SFXSource;
   public AudioSource MusicSource;
   public const uint SAMPLE_RATE = 44100;

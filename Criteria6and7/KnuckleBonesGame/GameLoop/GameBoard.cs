@@ -2,9 +2,12 @@ using System;
 
 
 namespace KnuckleBonesGame.GameLoop;
-
+/// <summary>
+/// Stores the game board state and manages operations on the board.
+/// </summary>
 public class GameBoard
 {
+  
   public int BoardWidth { get; private set; }
   public int BoardHeight { get; private set; }
 

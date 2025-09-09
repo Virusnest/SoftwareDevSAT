@@ -1,7 +1,10 @@
 using Foster.Framework;
-
+/// <summary>
+/// Control System Most Not Actually Used
+/// </summary>
 public class Controls(Input input)
 {
+
   public readonly VirtualStick Move = new(input, "Move",
     new StickBindingSet()
       .AddArrowKeys()

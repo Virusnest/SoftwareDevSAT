@@ -5,8 +5,11 @@ namespace KnuckleBonesGame;
 public interface IKnuckleAI {
   public int GetNextMove(KnuckleGame game, int dice, int aiLevel = 1, bool isPlayerA = false);
 }
-
+/// <summary>
+/// AI logic for Knuckle Bones Game
+/// </summary>
 public class KnuckleAI : IKnuckleAI {
+
   private Random random = new Random();
 
   public int GetNextMove(KnuckleGame game, int dice, int aiLevel, bool isPlayerA = false) {

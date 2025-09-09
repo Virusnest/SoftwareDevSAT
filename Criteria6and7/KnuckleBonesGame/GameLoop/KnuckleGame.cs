@@ -2,6 +2,10 @@ using System;
 
 namespace KnuckleBonesGame.GameLoop;
 
+
+/// <summary>
+/// Handles the main game logic, including turns, Events, state management, and win conditions.
+/// </summary>
 public class KnuckleGame
 {
   public bool HasStarted => State == GameState.InProgress;

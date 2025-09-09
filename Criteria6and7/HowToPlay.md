@@ -40,4 +40,3 @@ A strategic dice-placement game for two players, each using a X×Y grid. Players
 | Cancelling         | Matching die removes same-value dice in same column on opponent’s grid |
 | Game End Condition | When a board is full; higher total wins                                |
 
----

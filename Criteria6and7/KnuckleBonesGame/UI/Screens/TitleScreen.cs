@@ -67,6 +67,8 @@ public class TitleScreen : Screen {
   }
 
   public override void Render(MatrixStack matrixStack, float delta) {
+    // Render the title screen with a semi-transparent background
+    // Stupid Hack because I cant write a fucking ui system
     SystemRegistry.Batcher.PushBlend(BlendMode.Premultiply);
     SystemRegistry.Batcher.Rect(new Rect(Vector2.Zero, new Vector2(1920*4, 1080*4)), new Color(0, 0, 0, 0.5f)); // Draw the background
     SystemRegistry.Batcher.PushBlend(BlendMode.NonPremultiplied);

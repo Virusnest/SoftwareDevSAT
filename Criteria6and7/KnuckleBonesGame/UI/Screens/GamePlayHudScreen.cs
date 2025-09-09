@@ -7,15 +7,26 @@ using KnuckleBonesGame.Util.Math;
 using Timer = KnuckleBonesGame.Util.Timer;
 
 namespace KnuckleBonesGame.UI.Screens;
+/// <summary>
+/// Horrible mess of a class that handles the main game play HUD screen
+///
+/// Never do this again.
+/// </summary>
+// TODO : Refactor this class into smaller, more manageable components
 
 public class GamePlayHudScreen:Screen { 
   KnuckleGame Round;
   private GameSettings Settings;
+  
+  // GAME STATE //
+  
   public int RolledDiceA = 0;
   public int RolledDiceB = 0;
   
   public bool HasClickedDiceA = false;
   public bool HasClickedDiceB = false;
+  
+  // WIDGETS //
   
   public LabelWidget TextPopupLabel = new LabelWidget("Test", new Vector2(0, 0));
   
@@ -96,6 +107,9 @@ public class GamePlayHudScreen:Screen {
     }
   }
 
+  /// <summary>
+  /// Takes the AI's turn if it's the AI's turn to play
+  /// </summary>
   public void TakeAiTurn() {
     if (Round.IsPlayerATurn || !Settings.IsAgainstAI) return;
     if (Settings.AI == null) return;
@@ -109,6 +123,10 @@ public class GamePlayHudScreen:Screen {
     
   }
   
+  /// <summary>
+  /// Rolls the dice for the specified player
+  /// </summary>
+  /// <param name="IsPlayerA"></param>
   public void RollDice(bool IsPlayerA = true) {
     // Logic to roll the dice
     if (IsPlayerA) {
@@ -126,7 +144,10 @@ public class GamePlayHudScreen:Screen {
     return  SystemRegistry.Rng.Int(1,7);
     
   }
-
+/// <summary>
+/// Plays a popup animation with the specified text
+/// </summary>
+/// <param name="text"> Text to Display </param>
   public void PlayPopupAnimation(string text) {
     // Logic to play the popup animation
     TextPopupLabel.Text = text;
@@ -149,6 +170,9 @@ public class GamePlayHudScreen:Screen {
     PlayerScoreLabelA.Text = $"Player A Score: {Round.BoardA.CalculateScore()}";
     PlayerScoreLabelB.Text = $"Player B Score: {Round.BoardB.CalculateScore()}";
   }
+  /// <summary>
+  /// THis METHOD IS A MESS AND SHOULD NEVER BE DONE AGAIN
+  /// </summary>
   private void LoadWidgets() {
     AddChild(DiceRollButtonA);
     AddChild(DiceRollButtonB);

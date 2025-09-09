@@ -7,6 +7,9 @@ using KnuckleBonesGame.Util.Math.Extentions;
 
 namespace KnuckleBonesGame.UI;
 
+/// <summary>
+/// Manages different screens and handles scaling and rendering
+/// </summary>
 public class ScreenManager {
   private int _virtualScale = 1;
   public Matrix4x4 ProjectionMatrix;
@@ -75,6 +78,7 @@ public class ScreenManager {
     ViewMatrix = Matrix4x4.CreateScale(_virtualScale + 0.001f);
   }
 
+  
   private int CalcualteUIScale(int scale, int Width, int Height, int minWidth = 400, int minHeight = 300) {
     int i;
     for (i = 1; i != scale && Width / (i + 1) > minWidth && Width / (i + 1) > minHeight; i++) ;

@@ -5,9 +5,14 @@ using KnuckleBonesGame.UI.Screens;
 using KnuckleBonesGame.Util.Math.Extentions;
 
 namespace KnuckleBonesGame;
-
+/// <summary>
+/// Base Game Class for KnuckleBonesGame
+/// Contains only simple initialization and update logic deferring logic to managers
+/// </summary>
 public class Game : App
 { 
+  
+
   public static Camera Camera;
   public static Controls Controls;
   public static Batcher Batcher => SystemRegistry.Batcher;
@@ -20,14 +25,13 @@ public class Game : App
     public Matrix4x4 ProjectionMatrix;
     public Matrix4x4 ViewProjectionMatrix => ViewMatrix * ProjectionMatrix;
     public Matrix3x2 ViewProjectionMatrix2D => ViewProjectionMatrix.ToMatrix3x2();
-    public RenderMatrix(Matrix4x4 view, Matrix4x4 projection)
-    {
+
+    public RenderMatrix(Matrix4x4 view, Matrix4x4 projection) {
       ViewMatrix = view;
-       ProjectionMatrix = projection;
-      
+      ProjectionMatrix = projection;
+
     }
-    
-    
+
   }
   public Game(string name, int width, int height) : base(name, width, height)
   {
@@ -45,9 +49,6 @@ public class Game : App
 
   protected override void Render()
   {
-    
-    
-   
     Window.Clear(Color.FromHexStringRGB("2E2B27"));
     Batcher.Render(Window);
     

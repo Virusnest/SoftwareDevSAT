@@ -1,6 +1,9 @@
 namespace KnuckleBonesGame;
-
+/// <summary>
+/// Static Class Containing Watched Variables for Game Configuration
+/// </summary>
 public static class GameConfig {
+
   public static WatchedVariable<int> UIScale;
   public static WatchedVariable<bool> VSync;
   public static WatchedVariable<bool> FullScreen;
@@ -18,9 +21,7 @@ public static class GameConfig {
     FullScreen.OnValueChanged += value => SystemRegistry.GraphicsDevice.App.Window.Fullscreen= value;
     ShowFPS.OnValueChanged += value => Console.WriteLine($"ShowFPS changed to {value}");
     Volume.OnValueChanged += value => Console.WriteLine($"Volume changed to {value}");
-    
-  } 
-
+  }
 }
 
 public struct WatchedVariable<T> {
