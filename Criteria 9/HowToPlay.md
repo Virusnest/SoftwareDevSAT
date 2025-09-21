@@ -40,3 +40,28 @@ A strategic dice-placement game for two players, each using a X×Y grid. Players
 | Cancelling         | Matching die removes same-value dice in same column on opponent’s grid |
 | Game End Condition | When a board is full; higher total wins                                |
 
+# Beta Test Instructions 
+
+Please follow the steps below.
+
+There are no right or wrong answers, just use the program as see fit.
+
+## Instructions
+
+1. Launch the program.
+
+2. Navigate the menus and interface freely, as you see fit.
+
+3. Try to complete one round of gameplay if possible.
+
+While using the program, pay attention to:
+
+- Which parts of the UI you find easy or obvious to use.
+
+- Which parts you find confusing, unclear, or difficult.
+
+- Any bugs or glitches you encounter.
+
+## Feedback
+
+After you finish, please provide feedback on the google form.
