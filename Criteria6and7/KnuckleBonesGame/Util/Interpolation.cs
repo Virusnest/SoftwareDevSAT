@@ -5,20 +5,34 @@ namespace KnuckleBonesGame.Util;
 
 public static class Interpolation {
 
-  public static float CubicBezier(float t, float x1, float y1, float x2, float y2) {
-    float u = 1.0f - t;
-    float tt = t * t;
-    float uu = u * u;
-
-    // Bernstein polynomial form for cubic bezier (fixed P0=(0,0), P3=(1,1))
-    float y =
-      3 * uu * t * y1 +     // P1
-      3 * u * tt * y2 +     // P2
-      tt * t;               // P3 (1.0)
-
-    return y;
-  }
-
+   public static float CubicBezier(float x, float x1, float y1, float x2, float y2) {
+     // Solve x(t) = x using Newton-Raphson, then compute y(t)
+ 
+     const int ITERATIONS = 5;
+     float t = x; // initial guess
+ 
+     for (int i = 0; i < ITERATIONS; i++) {
+       float x_t = bezier(t, 0, x1, x2, 1);
+       float dx_t = bezierDerivative(t, 0, x1, x2, 1);
+       if (dx_t == 0) break;
+       t = t - (x_t - x) / dx_t;
+       t = MathF.Max(0, MathF.Min(1, t)); // clamp to [0,1]
+     }
+ 
+     return bezier(t, 0, y1, y2, 1);
+   }
+ 
+ // Cubic Bezier point
+   private static float bezier(float t, float p0, float p1, float p2, float p3) {
+     float u = 1 - t;
+     return u*u*u*p0 + 3*u*u*t*p1 + 3*u*t*t*p2 + t*t*t*p3;
+   }
+ 
+ // Derivative of cubic Bezier
+   private static float bezierDerivative(float t, float p0, float p1, float p2, float p3) {
+     float u = 1 - t;
+     return 3*u*u*(p1 - p0) + 6*u*t*(p2 - p1) + 3*t*t*(p3 - p2);
+   }
   public static float InterpolateWithEasing(float t, float a, float b, EasingFunction easingFunction) {
     return a + (b - a) * easingFunction(t);
   }
