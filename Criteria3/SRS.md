@@ -66,5 +66,5 @@ My software’s users would be those who enjoy playing video games, with fun twi
 
   Linux and Macos are priority as they are my primary development platforms and it would be pointless developing on a platform that can't be used to debug / test.
 
-  I have chosen to use my own c# custom framework as it will reduce development time, allowing for faster itteration and debugging due to
+  I have chosen to use my own c# custom framework acs it will reduce development time, allowing for faster itteration and debugging due to
   being familar with C# as the language I use for development the most and having written the framework.
